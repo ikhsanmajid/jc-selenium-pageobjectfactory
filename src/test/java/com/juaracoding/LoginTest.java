@@ -24,8 +24,8 @@ public class LoginTest {
 
     @AfterClass
     public void finish(){
-        DriverSingleton.delay(3);
-        DriverSingleton.closeObjectInstance();
+        loginPage.clearFormLogin();
+        loginPage.login("Admin", "admin123");
     }
 
     @Test(priority = 1)

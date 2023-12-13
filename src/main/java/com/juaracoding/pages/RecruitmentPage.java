@@ -41,7 +41,7 @@ public class RecruitmentPage {
     @FindBy(xpath = "//input[@class='oxd-input oxd-input--focus']")
     WebElement contactNumber;
 
-    @FindBy(xpath = "//div[@class='oxd-file-input-div']")
+    @FindBy(xpath = "//input[@class='oxd-file-input', @type='file']")
     WebElement resume;
 
     @FindBy(xpath = "//input[@placeholder='Enter comma seperated words...']")
@@ -53,6 +53,12 @@ public class RecruitmentPage {
     @FindBy(xpath = "//textarea[@placeholder='Type here']")
     WebElement notes;
 
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement submit;
+
+    @FindBy(xpath = "//h6[normalize-space()='Application Stage']")
+    WebElement textAfterSubmit;
+
     public void goToRecruiment(){
         RecruitmentPage.click();
     }
@@ -61,13 +67,55 @@ public class RecruitmentPage {
         addButton.click();
     }
 
-    public void clickVacancy(){
+    public void setFirstName(String firstName){
+        this.firstName.sendKeys(firstName);
+    }
 
+    public void setMiddleName(String middleName){
+        this.middleName.sendKeys(middleName);
+    }
+
+    public void setLastName(String lastName){
+        this.lastName.sendKeys(lastName);
+    }
+
+    public void clickVacancy(int position){
         action.moveToElement(vacancy).click().perform();
         delay(2);
         List<WebElement> vacancyItems = vacancy.findElements(By.xpath("//div[@role='listbox']/div[@role='option']"));
-        System.out.println(vacancyItems.get(0).getText());
+        vacancyItems.get(position).click();
+    }
 
+    public void setEmail(String email){
+        this.email.sendKeys(email);
+    }
+
+    public void setContactNumber(String contactNumber){
+        this.contactNumber.sendKeys(contactNumber);
+    }
+
+//    public void clickUpload(){
+//        resume.sendKeys(upload);
+//    }
+
+    public void setKeywords(String keywords){
+        this.keywords.sendKeys(keywords);
+    }
+
+//    public void setDate(String date){
+//        this.date.sendKeys(date);
+//    }
+
+    public void setNotes(String notes){
+        this.notes.sendKeys(notes);
+    }
+
+    public void submit(){
+        submit.click();
+    }
+
+    public String getTextAfterSubmit(){
+        return this.textAfterSubmit.getText();
     }
 
     public void delay(long s){

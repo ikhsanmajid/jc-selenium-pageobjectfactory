@@ -22,8 +22,7 @@ public class MainApp {
         RecruitmentPage recruit = new RecruitmentPage();
         recruit.goToRecruiment();
         recruit.addCandidate();
-        recruit.clickVacancy();
-
+        recruit.clickVacancy(2);
 
     }
 }
